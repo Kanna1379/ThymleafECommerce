@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xlmns:th = "https://www.thymeleaf.org/">
+
+<head>
+<title>Product List </title>
+<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<style>
+body {
+	margin-top : 8%;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div><a th:href="@{/product/addProduct}"class ="btn btn-dark">Add Product</a></div>
+
+&nbsp;
+<table class="table table-bordered">
+<tr class="table-dark">
+<th> Product ID </th>
+<th> SKU </th>
+<th> Product Name </th>
+<th> Description </th>
+<th> Unitprice </th>
+<th>Imageurl</th>
+<th> Active </th>
+<th> Units in stock </th>
+<th>Date Created</th>
+<th>Last Updated </th>
+<th>Category id</th>
+</tr>
+
+<tr th:each = "product : ${PRODUCT}">
+	<td th:text = "${product.pid}" />
+	<td th:text = "${product.sku}" />
+	<td th:text = "${product.name}"/>
+	<td th:text = "${product.description}" />
+	<td th:text = "${product.unitprice}" />
+	<td th:text = "${product.imageurl}" />
+	<td th:text = "${product.activebit}" />
+	<td th:text = "${product.unitsinstock}" />                    
+	<td th:text = "${product.datecreated}" />
+	<td th:text = "${product.lastupdated}" />
+	<td th:text = "${product.categoryid}" />
+	<td>
+		<a class ="btn btn-dark" th:href="@{/product/updateForm(productid = ${product.pid} )}" >update</a>
+		</br>
+		</br>
+		<a class ="btn btn-dark" th:href="@{/product/delete(productid = ${product.pid} )}" 	
+		onclick = "if(!(confirm('Are you sure to delete this product details?'))) ">delete</a>
+		<a class ="btn btn-dark" th:href="@{/product/search(productid = ${product.pid} )}" >search</a>
+	
+	</td>
+	
+</tr>
+
+</table>
+</div>
+
+
+</body>
+</html>
